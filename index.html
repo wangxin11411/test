@@ -1,0 +1,196 @@
+<html style="font-size: 50px;">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" name="viewport">
+    <title>后台管理系统</title>
+    <script type="text/javascript">
+    // 首先是一个立即执行函数，执行时传入的参数是window和document
+(function flexible (window, document) {
+  var docEl = document.documentElement // 返回文档的root元素
+  var dpr = window.devicePixelRatio || 1 
+  // 获取设备的dpr，即当前设置下物理像素与虚拟像素的比值
+
+  // 调整body标签的fontSize，fontSize = (12 * dpr) + 'px'
+  // 设置默认字体大小，默认的字体大小继承自body
+  function setBodyFontSize () {
+    if (document.body) {
+      document.body.style.fontSize = (12 * dpr) + 'px'
+    } else {
+      document.addEventListener('DOMContentLoaded', setBodyFontSize)
+    }
+  }
+  setBodyFontSize();
+
+  // set 1rem = viewWidth / 10
+  // 设置root元素的fontSize = 其clientWidth / 10 + ‘px’
+  function setRemUnit () {
+    var rem = docEl.clientWidth / 7.5
+    docEl.style.fontSize = rem + 'px'
+  }
+
+  setRemUnit()
+
+
+    // 当我们页面尺寸大小发生变化的时候，要重新设置下rem 的大小
+    window.addEventListener('resize', setRemUnit)
+        // pageshow 是我们重新加载页面触发的事件
+    window.addEventListener('pageshow', function(e) {
+        // e.persisted 返回的是true 就是说如果这个页面是从缓存取过来的页面，也需要从新计算一下rem 的大小
+        if (e.persisted) {
+            setRemUnit()
+        }
+    })
+
+  // 检测0.5px的支持，支持则root元素的class中有hairlines
+  if (dpr >= 2) {
+    var fakeBody = document.createElement('body')
+    var testElement = document.createElement('div')
+    testElement.style.border = '.5px solid transparent'
+    fakeBody.appendChild(testElement)
+    docEl.appendChild(fakeBody)
+    if (testElement.offsetHeight === 1) {
+      docEl.classList.add('hairlines')
+    }
+    docEl.removeChild(fakeBody)
+  }
+}(window, document))</script>
+    <style type="text/css">
+    body{margin:0;padding:0;font-family:Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif;font-size:14px;-webkit-font-smoothing:antialiased}#app{position:absolute;top:0;bottom:0;width:100%}/*!
+ *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
+ *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
+ */.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}.sr-only-focusable:active,.sr-only-focusable:focus{position:static;width:auto;height:auto;margin:0;overflow:visible;clip:auto}a,blockquote,body,dd,div,dl,dt,fieldset,form,h1,h2,h3,h4,h5,h6,input,li,ol,p,pre,td,textarea,th,ul{margin:0;padding:0;text-decoration:none;font-family:\\5FAE\8F6F\96C5\9ED1}table{border-spacing:0}fieldset,img{border:0}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:400}ol,ul{list-style:none}capation,th{text-align:left}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:400}q:after,q:before{content:" "}abbr,acronym{border:0}img{vertical-align:middle}a,button{outline:none}em{font-style:normal}.nonebg{background:none!important}.c666{color:#666}.cursor,button{cursor:pointer}.oh{height:auto;overflow:hidden}.f12{font-size:12px}.f13{font-size:13px}.f14{font-size:14px}.f16{font-size:16px}.f18{font-size:18px}.f20{font-size:20px}.fb{font-weight:700}.fn{font-weight:400}.t2{text-indent:2em}.lh150{line-height:150%}.lh180{line-height:180%}.lh200{line-height:200%}.unl{text-decoration:underline}.no_unl{text-decoration:none}.tl{text-align:left}.tc{text-align:center}.tr{text-align:right}.bc{margin-left:auto;margin-right:auto}.fl{float:left}.fl,.fr{display:inline}.fr{float:right}.cb{clear:both}.cl{clear:left}.cr{clear:right}.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}.clearfix{display:inline-block}html .clearfix{height:1%}.Clearfix{display:block}.vm{vertical-align:middle}.pr{position:relative}.abs-right,.pa{position:absolute}.abs-right{right:0}.zoom{zoom:1}.hidden{visibility:hidden}.none{display:none}.w10{width:10px}.w20{width:20px}.w30{width:30px}.w40{width:40px}.w50{width:50px}.w60{width:60px}.w70{width:70px}.w80{width:80px}.w90{width:90px}.w100{width:100px}.w200{width:200px}.w300{width:300px}.w400{width:400px}.w500{width:500px}.w600{width:600px}.w700{width:700px}.w800{width:800px}.w{width:100%}.h50{height:50px}.h80{height:80px}.h100{height:100px}.h200{height:200px}.h{height:100%}.m0{margin:0 auto}.m10{margin:10px}.m15{margin:15px}.m30{margin:30px}.mt5{margin-top:5px}.mt10{margin-top:10px}.mt15{margin-top:15px}.mt20{margin-top:20px}.mt25{margin-top:25px}.mt30{margin-top:30px}.mt40{margin-top:40px}.mt50{margin-top:50px}.mt60{margin-top:60px}.mt100{margin-top:100px}.mb5{margin-bottom:5px}.mb10{margin-bottom:10px}.mb15{margin-bottom:15px}.mb20{margin-bottom:20px}.mb30{margin-bottom:30px}.mb40{margin-bottom:40px}.mb50{margin-bottom:50px}.mb60{margin-bottom:60px}.mb100{margin-bottom:100px}.ml5{margin-left:5px}.ml10{margin-left:10px}.ml15{margin-left:15px}.ml20{margin-left:20px}.ml30{margin-left:30px}.ml40{margin-left:40px}.ml50{margin-left:50px}.ml100{margin-left:100px}.mr5{margin-right:5px}.mr10{margin-right:10px}.mr15{margin-right:15px}.mr20{margin-right:20px}.mr30{margin-right:30px}.mr50{margin-right:50px}.mr100{margin-right:100px}.p10{padding:10px}.p15{padding:15px}.p30{padding:30px}.p40{padding:40px}.p65{padding:65px}.pt5{padding-top:5px}.pt10{padding-top:10px}.pt15{padding-top:15px}.pt20{padding-top:20px}.pt30{padding-top:30px}.pt50{padding-top:50px}.pt100{padding-top:100px}.pb5{padding-bottom:5px}.pb10{padding-bottom:10px}.pb15{padding-bottom:15px}.pb20{padding-bottom:20px}.pb30{padding-bottom:30px}.pb50{padding-bottom:50px}.pb100{padding-bottom:100px}.pl5{padding-left:5px}.pl10{padding-left:10px}.pl15{padding-left:15px}.pl20{padding-left:20px}.pl25{padding-left:25px}.pl30{padding-left:30px}.pl50{padding-left:50px}.pl100{padding-left:100px}.pr5{padding-right:5px}.pr10{padding-right:10px}.pr15{padding-right:15px}.pr20{padding-right:20px}.pr30{padding-right:30px}.pr50{padding-right:50px}.pr100{padding-right:100px}</style>
+  
+    <style type="text/css">*{padding:0;margin:0;font-weight: normal;line-height: 1.5;}h1, h2, h3, h4, h5, h6 {font-size: 100%;font-weight: 400;}section[data-v-45eeed75]{background:#f2f2f2}.certTitle[data-v-45eeed75]{font-size:.36rem;color:#333;margin-bottom:.2rem;padding-top:.4rem}table[data-v-45eeed75]{border-collapse:collapse}.certPart[data-v-45eeed75]{padding:0 .36rem .56rem}.certPart-main[data-v-45eeed75]{background:#fff;padding:.25rem .4rem}.certPart-title[data-v-45eeed75]{font-size:.36rem;color:#16a6f8;margin-bottom:.26rem}.certPart-title i[data-v-45eeed75]{display:inline-block;height:.27rem;width:.05rem;background:#16a6f8;margin-right:.2rem}.certPart-main p[data-v-45eeed75]{margin:.2rem 0;font-size:0}.certPart-main p label[data-v-45eeed75]{font-size:.28rem;color:#666;margin-right:.4rem;width:1.5rem;text-align:right;display:inline-block;vertical-align:top}.certPart-main p span[data-v-45eeed75]{font-size:.28rem;color:#333;width:4rem;display:inline-block}.certPart-main .pass[data-v-45eeed75]{color:#46c88a}.certPart-main .nopass[data-v-45eeed75]{color:#b40810}.certPart-table table[data-v-45eeed75],.certPart-table table td[data-v-45eeed75],.certPart-table table th[data-v-45eeed75]{border:1px solid #ededed}.certPart-table table td[data-v-45eeed75],.certPart-table table th[data-v-45eeed75]{font-size:.28rem;color:#666;height:.6rem;padding:.1rem .26rem}.certPart-table table td span[data-v-45eeed75]{color:#46c88a;font-size:.28rem}.certPart-table[data-v-45eeed75]{background:#fff;width:100%}.certPart-table table th[data-v-45eeed75]{width:5rem;text-align:center}.certPart-table .second[data-v-45eeed75]{width:2rem;text-align:center}.certPart-table table .total td[data-v-45eeed75]{color:#393}th,td{line-height: 2.2}
+    </style>
+    
+  </head>
+<body class="">
+<div id="app"><section data-v-45eeed75=""><div data-v-45eeed75="" class="certPart"><h1 data-v-45eeed75="" class="certPart-title"><i data-v-45eeed75=""></i>培训信息</h1> <div data-v-45eeed75="" class="certPart-main">
+  <p data-v-45eeed75=""><label data-v-45eeed75="">用户名：</label><span data-v-45eeed75="" id='usename'></span></p>
+  <p data-v-45eeed75=""><label data-v-45eeed75="">真实姓名：</label><span data-v-45eeed75="" id='name'></span></p>
+  <p data-v-45eeed75=""><label data-v-45eeed75="">身份证号：</label><span data-v-45eeed75="" id='cardId'></span></p>
+  <p data-v-45eeed75=""><label data-v-45eeed75="">所属组织：</label><span data-v-45eeed75="">北京市</span></p>
+  <p data-v-45eeed75=""><label data-v-45eeed75="">工作单位：</label><span data-v-45eeed75="">北京戏曲艺术职业学院</span></p>
+  <p data-v-45eeed75=""><label data-v-45eeed75="">培训计划：</label><span data-v-45eeed75="" id='texta'></span></p>
+  <p data-v-45eeed75=""><label data-v-45eeed75="">考核学时：</label> <span data-v-45eeed75="">30（必修：10，选修：20）</span></p>
+  <p data-v-45eeed75=""><label data-v-45eeed75="">获得学时：</label> <span data-v-45eeed75="">必修：10 选修：0</span></p>
+  <p data-v-45eeed75=""><label data-v-45eeed75="">培训结果：</label><span data-v-45eeed75="" class="nopass">不通过，请参考“档案明细”</span></p></div></div> <div data-v-45eeed75=""><div data-v-45eeed75="" class="certPart"><h1 data-v-45eeed75="" class="certPart-title"><i data-v-45eeed75=""></i>线上培训必修课明细表</h1> <div data-v-45eeed75="" class="certPart-table">
+  <table data-v-45eeed75="">
+    <tr data-v-45eeed75=""><th data-v-45eeed75="">课程名称</th> <th data-v-45eeed75="" class="second">获得学时</th></tr>
+    <tr data-v-45eeed75="" id='qa'></tr>
+    <tr data-v-45eeed75="" id='qb'></tr>
+    <tr data-v-45eeed75="" id='qc'></tr>
+    <tr data-v-45eeed75="" id='qd'></tr>
+    <tr data-v-45eeed75="" class="total"><td data-v-45eeed75="">合计获得学时</td> <td data-v-45eeed75="" class="second">10</td></tr>
+  </table></div></div> <div data-v-45eeed75="" class="certPart"><h1 data-v-45eeed75="" class="certPart-title"><i data-v-45eeed75=""></i>线上培训选修课明细表</h1> <div data-v-45eeed75="" class="certPart-table"><table data-v-45eeed75=""><tr data-v-45eeed75=""><th data-v-45eeed75="">课程名称</th> <th data-v-45eeed75="" class="second">获得学时</th></tr> <!----><!----><!----><!----> <tr data-v-45eeed75="" class="total"><td data-v-45eeed75="">合计获得学时</td> <td data-v-45eeed75="" class="second">0</td></tr></table></div></div></div> <div data-v-45eeed75="" class="certPart"><h1 data-v-45eeed75="" class="certPart-title"><i data-v-45eeed75=""></i>线下培训明细表</h1> <!----></div></section></div>
+  <script type="text/javascript">
+    var data = {
+      '?cl2020': {
+        usename: '曹琳1980',
+        name: '曹琳',
+        cardId: '230602198010293623',
+        certId: 'BJZS202112163102',
+        texta: '2020年北京市专业技术人员及事业单位工作人员公共知识专题培训',
+        qa: {
+          q: '如何看待新中国70年',
+          t: '2'
+        },
+        qb: {
+          q: '中国共产党的光辉历程',
+          t: '2'
+        },
+        qc: {
+          q: '民法典紧扣时代脉搏  回应时代需求 体现时代特征',
+          t: '3'
+        },
+        qd: {
+          q: '着眼于“六稳”“六保”  努力改善民生',
+          t: '3'
+        }
+      },
+      '?cl2021': {
+        usename: '曹琳1980',
+        name: '曹琳',
+        cardId: '230602198010293623',
+        certId: '202112174011',
+        texta: '2021年北京市专业技术人员及事业单位工作人员公共知识专题培训',
+        qa: {
+          q: '充分认识我国仍处于重要战略机遇期——深入学习党的十九届五中全会精神',
+          t: '1'
+        },
+        qb: {
+          q: '深入推进京津冀协同发展',
+          t: '3'
+        },
+        qc: {
+          q: '中国共产党的百年自我革命的经验与启示',
+          t: '3'
+        },
+        qd: {
+          q: '“十四五”规划和二〇三五年远景目标解读',
+          t: '3'
+        }
+      },
+      '?ww2020': {
+        usename: '魏巍1979',
+        name: '魏巍',
+        cardId: '110105197912234518',
+        certId: 'BJZS202112163122',
+        texta: '2020年北京市专业技术人员及事业单位工作人员公共知识专题培训',
+        qa: {
+          q: '如何看待新中国70年',
+          t: '2'
+        },
+        qb: {
+          q: '中国共产党的光辉历程',
+          t: '2'
+        },
+        qc: {
+          q: '民法典紧扣时代脉搏  回应时代需求 体现时代特征',
+          t: '3'
+        },
+        qd: {
+          q: '着眼于“六稳”“六保”  努力改善民生',
+          t: '3'
+        }
+      },
+      '?ww2021': {
+        usename: '魏巍1979',
+        name: '魏巍',
+        cardId: '110105197912234518',
+        certId: '202112174021',
+        texta: '2021年北京市专业技术人员及事业单位工作人员公共知识专题培训',
+        qa: {
+          q: '充分认识我国仍处于重要战略机遇期——深入学习党的十九届五中全会精神',
+          t: '1'
+        },
+        qb: {
+          q: '深入推进京津冀协同发展',
+          t: '3'
+        },
+        qc: {
+          q: '中国共产党的百年自我革命的经验与启示',
+          t: '3'
+        },
+        qd: {
+          q: '“十四五”规划和二〇三五年远景目标解读',
+          t: '3'
+        }
+      }
+    }
+    var key = window.location.search
+    console.log(key)
+
+    document.getElementById('usename').innerText = data[key].usename
+    document.getElementById('name').innerText = data[key].name
+    document.getElementById('texta').innerText = data[key].texta
+    document.getElementById('cardId').innerText = data[key].cardId
+
+    document.getElementById('qa').innerHTML = '<td data-v-45eeed75="">' + data[key].qa.q + '</td> <td data-v-45eeed75="" class="second">' + data[key].qa.t + '</td>'
+    document.getElementById('qb').innerHTML = '<td data-v-45eeed75="">' + data[key].qb.q + '</td> <td data-v-45eeed75="" class="second">' + data[key].qb.t + '</td>'
+    document.getElementById('qc').innerHTML = '<td data-v-45eeed75="">' + data[key].qc.q + '</td> <td data-v-45eeed75="" class="second">' + data[key].qc.t + '</td>'
+    document.getElementById('qd').innerHTML = '<td data-v-45eeed75="">' + data[key].qd.q + '</td> <td data-v-45eeed75="" class="second">' + data[key].qd.t + '</td>'
+    </script>
+
+</body>
+</html>
